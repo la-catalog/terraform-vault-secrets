@@ -1,4 +1,4 @@
-variable "meili_pass" {
+variable "meili_key" {
   type      = string
   sensitive = true
 }
@@ -8,7 +8,7 @@ resource "vault_kv_secret" "meili" {
   data_json = jsonencode(
     {
       MEILI_URL = "http://${var.machine_ip}:7700"
-      MEILI_PASS = var.meili_pass
+      MEILI_KEY = var.meili_key
     }
   )
 }
