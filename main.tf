@@ -21,8 +21,3 @@ provider "vault" {
   address = "http://${var.machine_ip}:8200"
   token   = var.vault_token
 }
-
-resource "vault_mount" "url" {
-  path = "url"
-  type = "kv"
-}
