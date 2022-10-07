@@ -3,17 +3,17 @@ resource "vault_mount" "meili" {
   type = "kv"
 }
 
-variable "meili_key" {
+variable "meili_main_key" {
   type      = string
   sensitive = true
 }
 
-resource "vault_kv_secret" "meili" {
-  path = "${vault_mount.meili.path}/default"
+resource "vault_kv_secret" "meili_main" {
+  path = "${vault_mount.meili.path}/main"
   data_json = jsonencode(
     {
+      MEILI_KEY = var.meili_main_key
       MEILI_URL = "http://${var.machine_ip}:7700"
-      MEILI_KEY = var.meili_key
     }
   )
 }

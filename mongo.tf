@@ -3,21 +3,23 @@ resource "vault_mount" "mongo" {
   type = "kv"
 }
 
-variable "mongo_user" {
+variable "mongo_main_user" {
   type      = string
   sensitive = true
 }
 
-variable "mongo_pass" {
+variable "mongo_main_pass" {
   type      = string
   sensitive = true
 }
 
-resource "vault_kv_secret" "mongo" {
-  path = "${vault_mount.mongo.path}/default"
+resource "vault_kv_secret" "mongo_main" {
+  path = "${vault_mount.mongo.path}/main"
   data_json = jsonencode(
     {
-      MONGO_URL = "mongodb://${var.mongo_user}:${var.mongo_pass}@${var.machine_ip}:27017"
+      MONGO_USER = var.mongo_main_user
+      MONGO_PASS = var.mongo_main_pass
+      MONGO_URL  = "mongodb://${var.mongo_main_user}:${var.mongo_main_pass}@${var.machine_ip}:27017"
     }
   )
 }
