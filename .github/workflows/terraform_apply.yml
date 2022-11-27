@@ -1,0 +1,8 @@
+name: Apply Terraform
+
+on:
+  workflow_dispatch:
+
+jobs:
+  reusable:
+    uses: la-catalog/github-actions/.github/workflows/terraform_apply.yml@main
