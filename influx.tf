@@ -19,7 +19,7 @@ resource "vault_kv_secret" "influx_main" {
     {
       INFLUX_USER = var.influx_main_user
       INFLUX_PASS = var.influx_main_pass
-      INFLUX_URL = "http://${var.machine_ip}:8086"
+      INFLUX_URL  = "http://${var.machine_ip}:8086"
     }
   )
 }
